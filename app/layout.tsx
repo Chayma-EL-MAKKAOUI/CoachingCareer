@@ -2,6 +2,9 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { ReactNode } from 'react'
 import SimpleNavbar from '../components/Layout/SimpleNavbar'
+import FloatingChatbot from '../components/Chat/FloatingChatbot'
+import { ThemeProvider } from '../contexts/ThemeContext'
+import ThemeToggle from '../components/ThemeToggle'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,8 +21,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="fr">
       <body className={`${inter.className} antialiased`}>
-        <SimpleNavbar />
-        {children}
+        <ThemeProvider>
+          <SimpleNavbar />
+          {children}
+          <FloatingChatbot />
+          <ThemeToggle />
+        </ThemeProvider>
       </body>
     </html>
   )

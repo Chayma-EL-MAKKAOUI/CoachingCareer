@@ -8,7 +8,6 @@ import {
   BarChart3,
   Trash2,
   Download,
-  Eye,
   Calendar,
   Filter,
   Search,
@@ -199,7 +198,7 @@ export default function HistoriquePage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* En-tête */}
         <div className="mb-12">
@@ -208,10 +207,10 @@ export default function HistoriquePage() {
               <History className="h-8 w-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 bg-clip-text text-transparent">
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 dark:from-white dark:via-purple-300 dark:to-white bg-clip-text text-transparent">
                 Historique des analyses
               </h1>
-              <p className="text-gray-600 mt-1 text-lg">
+              <p className="text-gray-600 dark:text-gray-300 mt-1 text-lg">
                 Consultez et gérez toutes vos analyses précédentes
               </p>
             </div>
@@ -219,28 +218,28 @@ export default function HistoriquePage() {
         </div>
 
         {/* Filtres et recherche */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-6 mb-8">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/20 p-6 mb-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
               {/* Recherche */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-500" />
                 <input
                   type="text"
                   placeholder="Rechercher..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white/70 backdrop-blur-sm transition-all duration-200 hover:shadow-md"
+                  className="pl-10 pr-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm transition-all duration-200 hover:shadow-md text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
               {/* Filtre par type */}
               <div className="relative">
-                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-500" />
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="pl-10 pr-8 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white/70 backdrop-blur-sm transition-all duration-200 hover:shadow-md"
+                  className="pl-10 pr-8 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm transition-all duration-200 hover:shadow-md text-gray-900 dark:text-white"
                 >
                   <option value="all">Tous les types</option>
                   <option value="bulletin">Bulletins de paie</option>
@@ -266,19 +265,19 @@ export default function HistoriquePage() {
         </div>
 
         {/* Liste des analyses */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/20">
           {filteredAnalyses.length > 0 ? (
             <>
               {/* En-tête du tableau */}
-              <div className="px-6 py-4 border-b border-gray-200">
+              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center">
                   <input
                     type="checkbox"
                     checked={selectedItems.length === filteredAnalyses.length && filteredAnalyses.length > 0}
                     onChange={handleSelectAll}
-                    className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 dark:border-gray-600 rounded"
                   />
-                  <span className="ml-3 text-sm font-medium text-gray-900">
+                  <span className="ml-3 text-sm font-medium text-gray-900 dark:text-white">
                     Sélectionner tout ({filteredAnalyses.length})
                   </span>
                 </div>
@@ -296,28 +295,28 @@ export default function HistoriquePage() {
                             type="checkbox"
                             checked={selectedItems.includes(item.id)}
                             onChange={() => handleSelectItem(item.id)}
-                            className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                            className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 dark:border-gray-600 rounded"
                           />
-                          
+
                           <div className="flex items-center space-x-3">
-                            <div className="p-2 bg-gray-100 rounded-lg">
-                              <Icon className="h-5 w-5 text-gray-600" />
+                            <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                              <Icon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
                             </div>
-                            
+
                             <div>
-                              <h3 className="text-sm font-medium text-gray-900">{item.title}</h3>
-                              <p className="text-sm text-gray-500">{item.description}</p>
+                              <h3 className="text-sm font-medium text-gray-900 dark:text-white">{item.title}</h3>
+                              <p className="text-sm text-gray-500 dark:text-gray-400">{item.description}</p>
                               <div className="flex items-center space-x-4 mt-1">
-                                <span className="text-xs text-gray-400 flex items-center">
+                                <span className="text-xs text-gray-400 dark:text-gray-500 flex items-center">
                                   <Calendar className="h-3 w-3 mr-1" />
                                   {new Date(item.date).toLocaleDateString('fr-FR')}
                                 </span>
                                 <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}>
                                   {getStatusLabel(item.status)}
                                 </span>
-                                <span className="text-xs text-gray-400">{getTypeLabel(item.type)}</span>
+                                <span className="text-xs text-gray-400 dark:text-gray-500">{getTypeLabel(item.type)}</span>
                                 {item.fileSize && (
-                                  <span className="text-xs text-gray-400">{item.fileSize}</span>
+                                  <span className="text-xs text-gray-400 dark:text-gray-500">{item.fileSize}</span>
                                 )}
                               </div>
                             </div>
@@ -327,17 +326,14 @@ export default function HistoriquePage() {
                         <div className="flex items-center space-x-2">
                           {item.status === 'completed' && (
                             <>
-                              <button className="p-2 text-gray-400 hover:text-gray-600 rounded-md hover:bg-gray-100">
-                                <Eye className="h-4 w-4" />
-                              </button>
-                              <button className="p-2 text-gray-400 hover:text-gray-600 rounded-md hover:bg-gray-100">
+                              <button className="p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <Download className="h-4 w-4" />
                               </button>
                             </>
                           )}
-                          <button 
+                          <button
                             onClick={() => handleDeleteSingle(item.id)}
-                            className="p-2 text-gray-400 hover:text-red-600 rounded-md hover:bg-red-50"
+                            className="p-2 text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20"
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
@@ -350,10 +346,10 @@ export default function HistoriquePage() {
             </>
           ) : (
             <div className="px-6 py-12 text-center">
-              <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Aucune analyse trouvée</h3>
-              <p className="text-gray-500 mb-6">
-                {searchTerm || filterType !== 'all' 
+              <FileText className="h-12 w-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Aucune analyse trouvée</h3>
+              <p className="text-gray-500 dark:text-gray-400 mb-6">
+                {searchTerm || filterType !== 'all'
                   ? 'Aucun résultat ne correspond à vos critères de recherche.'
                   : 'Vous n\'avez pas encore effectué d\'analyses.'
                 }
@@ -373,25 +369,25 @@ export default function HistoriquePage() {
         {/* Modal de confirmation de suppression */}
         {showDeleteModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2 bg-red-100 rounded-full">
-                  <AlertTriangle className="h-6 w-6 text-red-600" />
+                <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-full">
+                  <AlertTriangle className="h-6 w-6 text-red-600 dark:text-red-400" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900">Confirmer la suppression</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white">Confirmer la suppression</h3>
               </div>
-              
-              <p className="text-gray-600 mb-6">
-                {itemToDelete === 'multiple' 
+
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                {itemToDelete === 'multiple'
                   ? `Êtes-vous sûr de vouloir supprimer ${selectedItems.length} analyse(s) ? Cette action est irréversible.`
                   : 'Êtes-vous sûr de vouloir supprimer cette analyse ? Cette action est irréversible.'
                 }
               </p>
-              
+
               <div className="flex space-x-3 justify-end">
                 <button
                   onClick={() => setShowDeleteModal(false)}
-                  className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50"
+                  className="px-4 py-2 text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700"
                 >
                   Annuler
                 </button>
